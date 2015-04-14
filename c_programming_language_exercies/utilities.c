@@ -14,10 +14,7 @@ int atoi(char s[])
 /* lower: <ctype.h> has tolower(c) which acts the same */
 int lower(int c)
 {
-	if ( c >= 'A' && c <= 'Z')
-		return c + 'a' - 'A';
-	else 
-		return c;
+	return c >= 'A' && c <= 'F' ? c - 'A' + 'a' : c;
 }
 
 /* rand: generates a random number */ 
@@ -63,14 +60,54 @@ int htoi(char s[])
 	return n;
 }
 
-/* squeese: delete the char c in s */
-void squeese(char s[], char c)
+/* squeese: delete the string c in s */
+void squeese(char s[], char c[])
+{
+	int i, j, k;
+
+	for ( i = k = 0; s[i] != '\0'; i++)
+	{
+		for ( j = 0; c[j] != '\0' && s[i] != c[j]; j++)
+			;
+		if ( c[j] == '\0')
+			s[k++] = s[i];
+	}
+	s[k] = '\0';
+	
+}
+
+/* any: */
+int any(char s1[], char s2[])
+{
+	return 0;
+
+}
+
+/* strcat: strcat the string t to the string s */
+void my_strcat(char s[], char t[])
 {
 	int i, j;
-	for (i = j = 0; s[i] != '\0'; i++)
-		if ( s[i] != c )
-			s[j++] = s[i];
-	s[j] = '\0';
+	i = j = 0;
+	while ( s[i] != '\0')
+		i ++;						// goes to the end of the string s //
+	while ((s[i++] = t[j++]) != '\0')
+		;
+}
+
+/* getbits: get the unsigned x's bits from p to n */
+unsigned getbits( unsigned x, int p, int n)
+{
+	return (x >> (p+1-n) & ~(~0 << n));
+}
+
+/* bitcount: cout the 1s of the integer x */
+int bitcount(unsigned x)
+{
+	int b = 0;
+	for (; x != 0; x >>= 1)
+		if (x & 01)
+			b ++;
+	return b;
 }
 
 
