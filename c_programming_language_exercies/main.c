@@ -3,10 +3,10 @@
 
 int main()
 {
-	char c = 'w';
+	char c[] = "w";
 	char s[] = "wangbo";
-//	squeese(s, c);
-//	printf("the squeesed string of s : %s\n", s);
+	squeese(s, c);
+	printf("the squeesed string of s : %s\n", s);
 	
 	char t[] = "zhangrujing";
 	my_strcat(s,t);
