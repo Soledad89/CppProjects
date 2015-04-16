@@ -7,7 +7,7 @@ int main()
 	char s[] = "wangbo";
 	squeese(s, c);
 	printf("the squeesed string of s : %s\n", s);	/* to test something */
-	
+	/* something that test */	
 	char t[] = "zhangrujing";
 	my_strcat(s,t);
 	printf("the strcated string of s: %s\n", s);
