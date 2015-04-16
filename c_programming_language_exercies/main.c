@@ -6,7 +6,7 @@ int main()
 	char c[] = "w";
 	char s[] = "wangbo";
 	squeese(s, c);
-	printf("the squeesed string of s : %s\n", s);
+	printf("the squeesed string of s : %s\n", s);	/* to test something */
 	
 	char t[] = "zhangrujing";
 	my_strcat(s,t);
