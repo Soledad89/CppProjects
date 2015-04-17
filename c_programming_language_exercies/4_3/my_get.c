@@ -2,8 +2,8 @@
 
 #define BUFFERSIZ 100
 
-char buf[BUFFERSIZ];
-int bufp = 0;
+static char buf[BUFFERSIZ];
+static int bufp = 0;
 
 int my_getch(void)
 {
