@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "calculator.h"
 
 #define MAXVAL 100
 int sp = 0;
