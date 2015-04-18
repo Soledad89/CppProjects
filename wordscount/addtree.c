@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "wordscount.h"
 
 struct tnode *addtree(struct tnode *p, char *w)
