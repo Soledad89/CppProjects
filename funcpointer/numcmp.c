@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-int numcmp(char *s1, char *s2)
+int numcmp(const char *s1,const  char *s2)
 {
     double v1, v2;
     
