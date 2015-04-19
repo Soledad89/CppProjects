@@ -1,11 +1,26 @@
 #include <stdio.h>
-#include "utilities.h"
+#include <string.h>
+//#include "utilities.h"
 #define MAXSIZE 30
+
+void chang(char s[], int n)
+{
+	int i;
+	char c = 'o';
+
+	for (i = 0; i < n; i++)
+		s[i] = c;
+}
+
 
 int main(int argc, char * argv[])
 {
-	double cint = my_atof(argv[1]);
-	printf("%f\n", cint);
+	char p[] = "wangbo";
+	printf("%s\n", p);
+	chang(p, 1); /* p must be array */
+	printf("%s\n", p);
+	//double cint = my_atof(argv[1]);
+	//printf("%f\n", cint);
 		
 	//squeese(s, c);
 	//printf("the squeesed string of s : %s\n", s);	/* to test something */
