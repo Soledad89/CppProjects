@@ -547,6 +547,8 @@ public:
         return m_pData;
     }
 };
+
+
 int main(int argc, char* argv[])
 {
     CMyVector<int> vtData;

@@ -6,7 +6,7 @@ class Singleton
 public:
     static Singleton * GetInstance()//通过静态公有函数获得该类的实例对象
     {
-        if(m_pInstance==NULL) {
+        if(m_pInstance == NULL) {       //这个导致只创建一次
             m_pInstance = new Singleton();
         }
         return m_pInstance;
@@ -28,6 +28,8 @@ private:
     };
     static Garbo gb;             //在程序结束时，系统会调用它的析构函数
 };
+
+
 Singleton * Singleton::m_pInstance = NULL;//初始化静态数据成员
 
 int main()

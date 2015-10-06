@@ -7,7 +7,7 @@ using namespace std;
 
 class CMyString
 {
-        friend std::ostream& operator<<( std::ostream& os, const CMyString& str);
+        friend std::ostream& operator<<( std::ostream& os, const CMyString& str); //对于<<的重载必须用引用
         private:
                 char* m_pData; //  私有变量保存字符串            //得用深拷贝，三法则
         public:
