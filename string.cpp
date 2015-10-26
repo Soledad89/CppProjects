@@ -2,7 +2,9 @@
 #include<string.h>
 #include<stdlib.h>
 #include<iostream>
-
+/*
+请用c++ 实现stl中的string类，实现构造，拷贝构造，析构，赋值，比较，字符串相加，获取长度及子串等功能。
+*/
 using namespace std;
 
 class CMyString
@@ -15,7 +17,8 @@ class CMyString
                 CMyString( const CMyString& str ); // 拷贝构造函数
                 ~CMyString( void ); // 析构函数
                 CMyString& operator=( const CMyString& str ); // 赋值运算符
-                CMyString operator+( const CMyString& str ); // 字符串连接 
+                CMyString operator+( const CMyString& str ); // 字符串连接
+                CMyString operator<( const CMyString& str ); //字符串比较 
                 bool operator==( const CMyString& str ); // 判断相等
                 char operator[]( int idx ); // 数组索引
                 int getLength(); // 返回长度
@@ -60,7 +63,7 @@ CMyString::~CMyString( void )
         }
 }
 
-CMyString& CMyString::operator=( const CMyString& str)          
+CMyString& CMyString::operator=( const CMyString& str)   //赋值构造函数在调用时，应该首先判断其是否为本身       
 {
         if ( this != &str )
         {
@@ -149,4 +152,116 @@ int main()
 
         std::cout << ( str1 == str3 ) << std::endl;
         return 0;
+}
+
+ 
+class String{
+public:
+    // 默认构造函数
+    String(const char* str = NULL);
+    // 复制构造函数
+    String(const String &str);
+    // 析构函数
+    ~String();
+    // 字符串连
+    String operator+(const String &str);
+    // 字符串赋值
+    String & operator=(const String &str);//两种赋值方式
+    // 字符串赋值
+    String & operator=(const char* str);
+    // 判断是否字符串相等
+    bool operator==(const String &str);
+    // 获取字符串长度
+    int length();
+    // 求子字符串[start,start+n-1]
+    String substr(int start, int n);
+    // 重载输出接
+    friend ostream & operator<<(ostream &o,const String &str);
+private:
+    char* data;
+    int size;
+};
+// 构造函数
+String::String(const char *str){
+    if(str == NULL){
+        data = new char[1];
+        data[0] = '\0';
+        size = 0;
+    }//if
+    else{
+        size = strlen(str);             
+        data = new char[size+1];            //必须实行深拷贝
+        strcpy(data,str);
+    }//else
+}
+// 复制构造函数
+String::String(const String &str){
+    size = str.size;
+    data = new char[size+1];
+    strcpy(data,str.data);
+}
+// 析构函数
+String::~String(){
+    delete[] data;
+}
+// 字符串连接
+String String::operator+(const String &str){
+    String newStr;
+    //释放原有空间
+    delete[] newStr.data;
+    newStr.size = size + str.size;
+    newStr.data = new char[newStr.size+1];
+    strcpy(newStr.data,data);
+    strcpy(newStr.data+size,str.data);
+    return newStr;
+}
+// 字符串赋值
+String & String::operator=(const String &str){
+    if(data == str.data){
+        return *this;
+    }//if
+    delete [] data;
+    size = str.size;
+    data = new char[size+1];
+    strcpy(data,str.data);
+    return *this;
+}
+// 字符串赋值
+String& String::operator=(const char* str){
+    if(data == str){
+        return *this;
+    }//if
+    delete[] data;
+    size = strlen(str);
+    data = new char[size+1];
+    strcpy(data,str);
+    return *this;
+}
+// 判断是否字符串相等
+bool String::operator==(const String &str){
+    return strcmp(data,str.data) == 0;
+}
+// 获取字符串长度
+int String::length(){
+    return size;
+}
+// 求子字符串[start,start+n-1]
+String String::substr(int start, int n){
+    String newStr;
+    // 释放原有内存
+    delete [] newStr.data;
+    // 重新申请内存
+    newStr.data = new char[n+1];
+    for(int i = 0;i < n;++i){
+        newStr.data[i] = data[start+i];
+    }//for
+    newStr.data[n] = '\0';
+    newStr.size = n;
+    return newStr;
+}
+// 重载输出
+std::ostream& operator<<( std::ostream& os, const String& str )
+{
+        os<< str.data;
+        return os;
 }
